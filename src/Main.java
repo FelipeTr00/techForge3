@@ -1,39 +1,17 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ContaBancaria conta = 
-        new ContaBancaria("12345",
-                          "João Silva",
-                          1000.0);
 
-        while (true) {
-            System.out.println("\nEscolha uma opção:\n" +
-                    "1 - Ver o Saldo da conta.\n" +
-                    "2 - Realizar um Depósito.\n" +
-                    "3 - Realizar um Saque.\n" +
-                    "Digite sua opção: ");
+        // #### NEW UNIVERSIDADE ####
+        Universidade princeton = new Universidade("Princeton (Nova Jersey - Estados Unidos da América)");
+        Universidade cambridge = new Universidade("Cambridge (Inglaterra)");
 
-            int opcao = sc.nextInt();
+        // #### NEW PESSOA ####
+        Pessoa albertEinstein = new Pessoa("Albert Einstein", "14/3/1879", princeton);
+        Pessoa isaacNewton = new Pessoa("Isaac Newton", "4/1/1643", cambridge);
 
-            switch (opcao) {
-                case 1:
-                    conta.exibirSaldo();
-                    break;
-                case 2:
-                    System.out.print("Quanto deseja depositar? R$");
-                    double valorDeposito = sc.nextDouble();
-                    conta.depositar(valorDeposito);
-                    break;
-                case 3:
-                    System.out.print("Quanto deseja sacar? R$");
-                    double valorSaque = sc.nextDouble();
-                    conta.sacar(valorSaque);
-                    break;
-                default:
-                    System.out.println("Tente novamente.");
-            }
-        }
+        System.out.println("- " + albertEinstein.getNome() + " trabalhou como professor em " +
+                albertEinstein.getUniversidade() + ".");
+        System.out.println("- " + isaacNewton.getNome() + " trabalhou como professor em " +
+                isaacNewton.getUniversidade() + ".");
     }
 }
