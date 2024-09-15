@@ -1,49 +1,39 @@
-import Model.Aluno;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        ContaBancaria conta = 
+        new ContaBancaria("12345",
+                          "João Silva",
+                          1000.0);
 
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
-        dataFormatada.setLenient(false);
+        while (true) {
+            System.out.println("\nEscolha uma opção:\n" +
+                    "1 - Ver o Saldo da conta.\n" +
+                    "2 - Realizar um Depósito.\n" +
+                    "3 - Realizar um Saque.\n" +
+                    "Digite sua opção: ");
 
-        System.out.print("Digite seu nome: ");
-        String nome = sc.nextLine();
+            int opcao = sc.nextInt();
 
-
-        // Aniversário
-        System.out.println("Data de nascimento (dd/mm/aaaa): ");
-        String dataInput = sc.nextLine();
-        Date dataNascimento = null;
-        dataNascimento = dataFormatada.parse(dataInput);
-
-
-        // Peso
-        System.out.print("Peso (kg): ");
-        double peso = sc.nextDouble();
-
-        // Altura
-        System.out.print("Altura (metros): ");
-        double altura = sc.nextDouble();
-
-        // New Aluno
-        Aluno aluno = new Aluno(nome, dataNascimento, peso, altura);
-
-        // Retornos
-        System.out.println("Nome: " + aluno.getNome());
-        System.out.println("Idade: " + aluno.getIdade());
-        System.out.println("Peso: " + peso);
-        System.out.println("Altura: " + altura);
-        System.out.println("IMC: " + aluno.getImc());
-        System.out.println("Tenha um ótimo treino =)");
-
-
-
-        sc.close();
+            switch (opcao) {
+                case 1:
+                    conta.exibirSaldo();
+                    break;
+                case 2:
+                    System.out.print("Quanto deseja depositar? R$");
+                    double valorDeposito = sc.nextDouble();
+                    conta.depositar(valorDeposito);
+                    break;
+                case 3:
+                    System.out.print("Quanto deseja sacar? R$");
+                    double valorSaque = sc.nextDouble();
+                    conta.sacar(valorSaque);
+                    break;
+                default:
+                    System.out.println("Tente novamente.");
+            }
+        }
     }
 }
